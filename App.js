@@ -1,11 +1,29 @@
+/*
+*
+* Ejercicio 1:
+* A partir del código proporcionado, utiliza map y un cuadrado para
+* renderizar una figura similar a la siguiente:
+*/
 import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+
 export default function App() {
+  const [content, setContent] = useState([
+    { width: 150, color: 'blue' },
+    { width: 300, color: 'red' }
+  ])
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row' }}>
-        <View width={100} height={100} backgroundColor={'yellow'} />
-      </View>
-      <View style={{ flexDirection: 'row' }}>
+      {content.map((value, index) => (
+        <View key={index.toString()} style={{ flexDirection: 'row' }}>
+          <View
+            width={value.width}
+            height={value.width}
+            backgroundColor={value.color} />
+        </View>
+      ))}
+
+      {/* <View style={{ flexDirection: 'row' }}>
         <View
           width={0}
           height={0}
@@ -66,7 +84,7 @@ export default function App() {
           borderBottomRightRadius={150}
           backgroundColor={'red'}
         />
-      </View>
+      </View> */}
     </View>
   );
 }
