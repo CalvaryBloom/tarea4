@@ -1,6 +1,6 @@
 /*
 *
-* Ejercicio 1:
+* Ejercicio 2:
 * A partir del código proporcionado, utiliza map y un cuadrado para
 * renderizar una figura similar a la siguiente:
 */
@@ -9,21 +9,46 @@ import { useState } from 'react';
 
 export default function App() {
   const [content, setContent] = useState([
-    { width: 150, color: 'blue' },
-    { width: 300, color: 'red' }
+    {
+      widthSquareOne: 150,
+      colorSquareOne: 'blue',
+      widthSquareTwo: 150,
+      colorSquareTwo: 'blue',
+    },
+    {
+      widthSquareOne: 150,
+      colorSquareOne: 'red',
+      widthSquareTwo: 150,
+      colorSquareTwo: 'blue',
+    },
+    {
+      widthSquareOne: 150,
+      colorSquareOne: 'red',
+      widthSquareTwo: 150,
+      colorSquareTwo: 'red',
+    },
   ])
   return (
     <View style={styles.container}>
       {content.map((value, index) => (
         <View key={index.toString()} style={{ flexDirection: 'row' }}>
           <View
-            width={value.width}
-            height={value.width}
-            backgroundColor={value.color} />
+            width={value.widthSquareOne}
+            height={value.widthSquareOne}
+            backgroundColor={value.colorSquareOne}
+          />
+          <View
+            width={value.widthSquareTwo}
+            height={value.widthSquareTwo}
+            backgroundColor={value.colorSquareTwo}
+          />
         </View>
       ))}
+    </View>
+  );
+}
 
-      {/* <View style={{ flexDirection: 'row' }}>
+{/* <View style={{ flexDirection: 'row' }}>
         <View
           width={0}
           height={0}
@@ -85,9 +110,7 @@ export default function App() {
           backgroundColor={'red'}
         />
       </View> */}
-    </View>
-  );
-}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
