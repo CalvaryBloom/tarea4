@@ -1,32 +1,68 @@
 /*
 *
-* Ejercicio 4:
-* A partir del código proporcionado, utiliza map y un círculo para renderizar una figura similar a la siguiente:
+* Ejercicio 5:
+* A partir del código proporcionado, utiliza map y un círculo dividido entre cuatro para renderizar una figura similar a la siguiente:
 */
 import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 
 export default function App() {
-  const [content, setContent] = useState([
-    ['red', 'blue', 'green'],
-    ['blue', 'green', 'red'],
-    ['green', 'red', 'blue'],
+  const [contents, setContents] = useState([
+    [
+      {
+        topLeftRadius: 150,
+        topRightRadius: 0,
+        bottomLeftRadius: 0,
+        bottomRightRadius: 0,
+        color: 'red',
+      },
+      {
+        topLeftRadius: 0,
+        topRightRadius: 150,
+        bottomLeftRadius: 0,
+        bottomRightRadius: 0,
+        color: 'blue',
+      },
+    ],
+    [
+      {
+        topLeftRadius: 0,
+        topRightRadius: 0,
+        bottomLeftRadius: 150,
+        bottomRightRadius: 0,
+        color: 'blue',
+      },
+      {
+        topLeftRadius: 0,
+        topRightRadius: 0,
+        bottomLeftRadius: 0,
+        bottomRightRadius: 150,
+        color: 'red',
+      },
+    ],
   ]);
 
   return (
     <View style={styles.container}>
-      {[0, 1, 2].map((value, index) => (
-        <View style={{ flexDirection: 'row' }}>
-          {content[value].map((value, index) => (
-            <View
-              width={100}
-              height={100}
-              borderRadius={50}
-              backgroundColor={value}
-            />
-          ))}
-        </View>
-      ))}
+      {[150, 100, 75].map((size) =>
+        [0, 1].map((row) => (
+          <View key={row.toString()} style={{ flexDirection: 'row' }}>
+            {[0, 1].map((column) => (
+              <View
+                width={size}
+                height={size}
+                borderTopLeftRadius={contents[row][column].topLeftRadius}
+                borderTopRightRadius={contents[row][column].topRightRadius}
+                borderBottomLeftRadius={contents[row][column].bottomLeftRadius}
+                borderBottomRightRadius={
+                  contents[row][column].bottomRightRadius
+                }
+                backgroundColor={contents[row][column].color}
+              />
+            ))}
+          </View>
+        ))
+      )}
     </View>
   );
 }
