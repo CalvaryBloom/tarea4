@@ -1,8 +1,7 @@
 /*
 *
-* Ejercicio 2:
-* A partir del código proporcionado, utiliza map y un cuadrado para
-* renderizar una figura similar a la siguiente:
+* Ejercicio 3:
+* A partir del código proporcionado, utiliza map, un cuadrado y un triángulo para renderizar una figura similar a la siguiente
 */
 import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
@@ -12,36 +11,52 @@ export default function App() {
     {
       widthSquareOne: 150,
       colorSquareOne: 'blue',
-      widthSquareTwo: 150,
+      widthSquareTwo: 50,
       colorSquareTwo: 'blue',
     },
     {
       widthSquareOne: 150,
       colorSquareOne: 'red',
-      widthSquareTwo: 150,
+      widthSquareTwo: 50,
       colorSquareTwo: 'blue',
     },
     {
       widthSquareOne: 150,
       colorSquareOne: 'red',
-      widthSquareTwo: 150,
-      colorSquareTwo: 'red',
+      widthSquareTwo: 100,
+      colorSquareTwo: 'blue',
     },
   ])
   return (
     <View style={styles.container}>
+      <View style={{ flexDirection: 'row' }}>
+        <View
+          width={0}
+          height={0}
+          backgroundColor={'transparent'}
+          borderStyle={'solid'}
+          borderLeftWidth={50}
+          borderRightWidth={50}
+          borderBottomWidth={100}
+          borderLeftColor="transparent"
+          borderRightColor="transparent"
+          borderBottomColor="blue"
+        />
+      </View>
       {content.map((value, index) => (
         <View key={index.toString()} style={{ flexDirection: 'row' }}>
-          <View
-            width={value.widthSquareOne}
-            height={value.widthSquareOne}
-            backgroundColor={value.colorSquareOne}
-          />
           <View
             width={value.widthSquareTwo}
             height={value.widthSquareTwo}
             backgroundColor={value.colorSquareTwo}
           />
+          <View>
+            <View
+              width={value.widthSquareTwo}
+              height={value.widthSquareTwo}
+              backgroundColor={value.colorSquareTwo}
+            />
+          </View>
         </View>
       ))}
     </View>
